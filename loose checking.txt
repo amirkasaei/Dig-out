@@ -1,0 +1,58 @@
+//loose checking
+    static boolean loose(char[] board,byte row,byte col,byte place){
+        //first column
+        if (place%col == 0) {
+            if (place == 0) {
+                if (board[place+1] == '@' && board[place+col] == '@') {
+                    return true;
+                }
+            }
+            else if (place == (row-1)*col) {
+                if (board[place+1] == '@' && board[place-col] == '@') {
+                    return true;
+                }
+            }
+            else {
+                if (board[place+1] == '@' && board[place+col] == '@' && board[place-col] == '@') {
+                    return true;
+                }
+            }
+        }
+        //last column
+        else if (place%col == col-1) {
+            if (place == col-1) {
+                if (board[place-1] == '@' && board[place+col] == '@') {
+                    return true;
+                }
+            }
+            else if (place == row*col-1) {
+                if (board[place-1] == '@' && board[place-col] == '@') {
+                    return true;
+                }
+            }
+            else {
+                if (board[place-1] == '@' && board[place+col] == '@' && board[place-col] == '@') {
+                    return true;
+                }
+            }
+        }
+        //first row
+        else if (place < col) {
+            if (board[place+1] == '@' && board[place-1] == '@' && board[place+col] == '@') {
+                return true;
+            }
+        }
+        //last row
+        else if (place > (row-1)*col) {
+            if (board[place+1] == '@' && board[place-1] == '@' && board[place-col] == '@') {
+                return true;
+            }
+        }
+        //center
+        else {
+            if (board[place+1] == '@' && board[place-1] == '@' && board[place-col] == '@' && board[place+col] == '@') {
+                return true;
+            }
+        }
+        return false;
+    }
